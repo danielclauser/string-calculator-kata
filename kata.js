@@ -1,4 +1,11 @@
-// first line retrive
+
+
+//@params: 
+// String: String with delimiters and numbers
+//@retrun: 
+//  Array: 2 elements, first with string of delimiters and second is a string of number without personal delimiter. 
+//
+//Delimiters is '\n' and ',' . 
 
 function getDelimiters(strDelimiter){
     
@@ -25,8 +32,22 @@ function getDelimiters(strDelimiter){
 
 };
 
+//@params: 
+//  Array: Numeric array 
+//@retrun: 
+//  Array: Negative numeric array
+// 
+// Filter the array and return only negarive numbers
+function getNegativeNumbers(arrNumbers){
+    var arrNegariveNumber = arrNumbers.filter(function(item) {
+        if (item < 0) return item;
+    });
 
-// @parm 
+    return arrNegariveNumber;
+};
+
+
+// @parms 
 // String: list of number delimited with special character.
 //         costant delimiter charcter "\n"  and ","
 //         in first line could accept personal delimiter.  
@@ -41,8 +62,12 @@ function add(elementToSum){
         return 0;
     }
     
+    
+    // get the delimites and numbers
     var arrDelimNumbers = getDelimiters(elementToSum);
+    // delimiters 
     delimiters = arrDelimNumbers[0];
+    // numbers to split based on delimiters. 
     elementToSum = arrDelimNumbers[1];
 
     var delimitersRegExp = new RegExp(delimiters);
@@ -51,15 +76,27 @@ function add(elementToSum){
     var splitInp= elementToSum.split(delimitersRegExp).map(function(item) {
         // check if is an empty element, happens when the sting contain a delimiter in last position 
         if (item == '') return 0;
+
         return parseInt(item, 10);
     });
+
+    var negativeNumbers= getNegativeNumbers(splitInp);
+    try {
+
+        if (negativeNumbers != [] ) throw new SyntaxError("negatives not allowed: "+ negativeNumbers);
+            
+     
+    }
+    catch (e) {
+        console.log(e);
+    }
 
     // for each element apply a summation function.
     var sum = splitInp.reduce((a , b) => a + b , 0)    
 
     return sum;
 }
-var str = '//ciao\n123ciao123,2';
+var str = '//a\n123a123,2';
 
 
 output = add(str);
