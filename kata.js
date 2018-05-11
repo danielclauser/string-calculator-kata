@@ -104,7 +104,7 @@ exports.add = function(elementToSum){
     var arrDelimNumbers = getDelimiters(elementToSum);
     // for generate the delimiters regular expression
     delimiters = arrDelimNumbers[0];
-    console.log(delimiters);
+
     // numbers to split based on delimiters. 
     elementToSum = arrDelimNumbers[1];
 
@@ -137,5 +137,5 @@ var str = '//?\n1000?123,2\n';
 
 
 output = exports.add(str);
-console.log(output);   
+//console.log(output);   
 
