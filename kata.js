@@ -1,3 +1,4 @@
+var exports = module.exports = {};
 
 //@params: 
 // String: String with delimiters and numbers
@@ -66,7 +67,7 @@ function getNumbers(regExp,strDelNumber){
 
         return parseInt(item, 10);
 
-        });
+    });
 };
 
 //@params: 
@@ -90,7 +91,7 @@ function getNegativeNumbers(arrNumbers){
 //         in first line could accept personal delimiter.  
 // @return
 // Int   : Summation of numbers 
-function add(elementToSum){
+exports.add = function(elementToSum){
     
     var sum = 0;
  
@@ -135,6 +136,6 @@ function add(elementToSum){
 var str = '//?\n1000?123,2\n';
 
 
-output = add(str);
+output = exports.add(str);
 console.log(output);   
 
