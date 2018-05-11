@@ -1,5 +1,12 @@
 var stringCalculator = require("./kata.js");
 
-sum = stringCalculator.add('//?\n1000?123,2\n');
+fs = require('fs');
+fs.readFile('testfile/sum_1_7476.txt', 'utf8', function (err,data) {
+    if (err) {
+       return console.log(err);
+    };
+    sum = stringCalculator.add(data);
 
-console.log('total: ' +sum);
+    console.log('total: ' +sum);
+});
+
