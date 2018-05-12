@@ -29,7 +29,6 @@ function getDelimiters(strDelimiter){
         strNumbers = strNumbers.substring(strDelimiter.indexOf('\n'));
 
     };
-    
     // delimiter validation
     var specialCharFound = specialChar.filter(function(item) {
 
@@ -44,8 +43,8 @@ function getDelimiters(strDelimiter){
     };
 
     // construct the final delimiters
-    costDelimiter = newDelimiter + '|' + costDelimiter ;
-
+    costDelimiter = costDelimiter +'|' + newDelimiter ;
+    console.log(costDelimiter);
     return [costDelimiter,strNumbers];
 
 };
@@ -60,6 +59,7 @@ function getDelimiters(strDelimiter){
 function getNumbers(regExp,strDelNumber){
 
     return strDelNumber.split(regExp).map(function(item) {
+        console.log(item);
         // check if is an empty element, happens when the string contain a delimiter in last position 
         if (item == '') return 0;
         // when element is > 1000, it is forced to 0.
@@ -104,7 +104,7 @@ exports.add = function(elementToSum){
     var arrDelimNumbers = getDelimiters(elementToSum);
     // for generate the delimiters regular expression
     delimiters = arrDelimNumbers[0];
-
+    console.log('delimit ' +delimiters);
     // numbers to split based on delimiters. 
     elementToSum = arrDelimNumbers[1];
 
@@ -121,8 +121,7 @@ exports.add = function(elementToSum){
     try {
 
         if (negativeNumbers.length > 0 ) throw new SyntaxError("negatives not allowed: "+ negativeNumbers);
-            
-     
+
     }
     catch (e) {
         console.log(e);
@@ -130,12 +129,7 @@ exports.add = function(elementToSum){
 
     // for each element apply a summation function.
     var sum = splitInp.reduce((a , b) => a + b , 0)    
-
+    console.log(splitInp);
     return sum;
 }
-var str = '//?\n1000?123,2\n';
-
-
-output = exports.add(str);
-//console.log(output);   
 
